@@ -26,17 +26,17 @@ export function DeleteCategoryDialog({
   const router = useRouter()
 
   const handleOnClick = async (id: string) => {
-		await fetch(`https://api-categoria.azurewebsites.net/api/categoria/${id}`, {
+		const response = await fetch(`https://api-categoria.azurewebsites.net/api/categoria/${id}`, {
 			method: 'DELETE',
 			mode: 'cors',
-      cache: 'no-cache',
 			headers: {
 				"Content-Type": 'application/json'
 			},
-		}).then(() => {
-      router.push('/category')
-			toast({ title: 'Categoria deletada com sucesso!' })
 		})
+
+    toast({ title: 'Categoria deletada com sucesso!' })
+    router.push('/category')
+    router.refresh()
   }
 
   return (

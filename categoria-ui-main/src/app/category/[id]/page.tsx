@@ -2,7 +2,11 @@ import { EditCategoryForm } from "@/components/EditCategoryForm";
 import { Category, CategoryRequest } from "@/types/category";
 
 async function getSelectedCategory(id: string) {
-		const res = await fetch(`https://api-categoria.azurewebsites.net/api/categoria/${id}`);
+		const res = await fetch(`https://api-categoria.azurewebsites.net/api/categoria/${id}`, {
+			next: {
+				revalidate: 0
+			}
+		});
 		const data = await res.json() as CategoryRequest
 
   const category: Category = {

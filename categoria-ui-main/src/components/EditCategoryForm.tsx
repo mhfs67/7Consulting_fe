@@ -38,17 +38,18 @@ export function CategoryForm({ category }: EditCategoryFormProps) {
 		await fetch(`https://api-categoria.azurewebsites.net/api/categoria/${category.id}`, {
 			method: 'PUT',
 			mode: 'cors',
-      cache: 'no-cache',
 			headers: {
 				"Content-Type": 'application/json'
 			},
 			body: JSON.stringify(values)
-		}).then(() => {
-			toast({ title: 'Categoria editada com sucesso!' })
-			setTimeout(() => {
-				router.push('/category')
-			}, 1000)
 		})
+
+		toast({ title: 'Categoria editada com sucesso!' })
+
+		setTimeout(() => {
+			router.push('/category')
+			router.refresh()
+		}, 1000)
 	}
 
 	return (
