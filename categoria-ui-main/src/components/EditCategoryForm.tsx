@@ -17,7 +17,7 @@ import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { useToast } from "./ui/use-toast";
 import { Category } from "@/types/category";
-
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
 	nome: z.string()
@@ -25,6 +25,7 @@ const formSchema = z.object({
 
 export function CategoryForm({ category }: EditCategoryFormProps) {
 	const { toast } = useToast()
+  const router = useRouter()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -44,6 +45,9 @@ export function CategoryForm({ category }: EditCategoryFormProps) {
 			body: JSON.stringify(values)
 		}).then(() => {
 			toast({ title: 'Categoria editada com sucesso!' })
+			setTimeout(() => {
+				router.push('/category')
+			}, 1000)
 		})
 	}
 
@@ -66,7 +70,7 @@ export function CategoryForm({ category }: EditCategoryFormProps) {
 				<div className="flex gap-2 justify-end">
 					<Button type="submit" className="w-[25%]">Editar</Button>
 					<Button variant="destructive" asChild className="w-[25%]">
-						<Link href="/">
+						<Link href="/category">
 							Cancelar
 						</Link>
 					</Button>

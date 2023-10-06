@@ -5,7 +5,7 @@ import { Category, CategoryRequest } from "@/types/category";
 
 const getCategories = async (): Promise<Category[]> => {
   const res = await fetch('https://api-categoria.azurewebsites.net/api/categoria', {
-      cache: 'no-cache',
+      cache: 'no-store',
   })
   const data = await res.json() as CategoryRequest[]
 

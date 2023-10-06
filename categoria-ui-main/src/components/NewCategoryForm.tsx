@@ -39,7 +39,8 @@ export function CategoryForm() {
 			},
 			body: JSON.stringify(values)
 		}).then(() => {
-			toast({ title: 'Categoria criada com sucesso!' })
+			toast({ title: `Categoria ${values.nome} criada com sucesso!` })
+			form.reset()
 		})
 	}
 
